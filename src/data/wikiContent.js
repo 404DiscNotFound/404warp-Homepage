@@ -22,6 +22,9 @@ export const wikiSections = {
           '5-second teleport countdown with animated spiral particles, portal effects, and sounds',
           'Cancelled on movement (>0.15 blocks), damage, combat, world change, or disconnect',
         ]},
+        { type: 'image', src: 'https://media.base44.com/images/public/6a4bffc12d8a6fb696747ba5/ba26b0169_Thewarpmenuforplayers.png', caption: 'The Warp Book GUI showing all player warps with coordinates and status' },
+        { type: 'image', src: 'https://media.base44.com/images/public/6a4bffc12d8a6fb696747ba5/557d2ac54_Warpcountdown.png', caption: '5-second teleport countdown with spiral particles' },
+        { type: 'image', src: 'https://media.base44.com/images/public/6a4bffc12d8a6fb696747ba5/ffc98c25d_Warppointwithparticles.png', caption: 'Warp point with tornado swirl particles in the world' },
       ],
     },
     {
@@ -35,6 +38,9 @@ export const wikiSections = {
           'Delete warp with confirmation GUI',
           'All sub-menus have back buttons',
         ]},
+        { type: 'image', src: 'https://media.base44.com/images/public/6a4bffc12d8a6fb696747ba5/d60b1b2f9_Optionforaplayerwarppoint.png', caption: 'Warp Options menu — toggle particles, rename, delete, and more' },
+        { type: 'image', src: 'https://media.base44.com/images/public/6a4bffc12d8a6fb696747ba5/30b5f4d45_Chooseawarpicon.png', caption: 'Set Warp Icon — click any item from your inventory (item is not consumed)' },
+        { type: 'image', src: 'https://media.base44.com/images/public/6a4bffc12d8a6fb696747ba5/6adec2321_Choosetheparticlecolorofyourwarppoint.png', caption: 'Warp Color — choose from 10 particle colors' },
       ],
     },
     {
@@ -367,6 +373,9 @@ server_warps:
           '5-Sekunden Teleport-Countdown mit animierten Spiral-Partikeln, Portal-Effekten und Sounds',
           'Abgebrochen bei Bewegung (>0.15 Blöcke), Schaden, Kampf, Weltwechsel oder Disconnect',
         ]},
+        { type: 'image', src: 'https://media.base44.com/images/public/6a4bffc12d8a6fb696747ba5/ba26b0169_Thewarpmenuforplayers.png', caption: 'Das Warp Book GUI mit allen Spieler-Warps, Koordinaten und Status' },
+        { type: 'image', src: 'https://media.base44.com/images/public/6a4bffc12d8a6fb696747ba5/557d2ac54_Warpcountdown.png', caption: '5-Sekunden Teleport-Countdown mit Spiral-Partikeln' },
+        { type: 'image', src: 'https://media.base44.com/images/public/6a4bffc12d8a6fb696747ba5/ffc98c25d_Warppointwithparticles.png', caption: 'Warp-Punkt mit Tornado-Swirl-Partikeln in der Welt' },
       ],
     },
     {
@@ -380,6 +389,9 @@ server_warps:
           'Warp mit Bestätigungs-GUI löschen',
           'Alle Untermenüs haben Zurück-Buttons',
         ]},
+        { type: 'image', src: 'https://media.base44.com/images/public/6a4bffc12d8a6fb696747ba5/d60b1b2f9_Optionforaplayerwarppoint.png', caption: 'Warp-Optionen-Menü — Partikel umschalten, umbenennen, löschen und mehr' },
+        { type: 'image', src: 'https://media.base44.com/images/public/6a4bffc12d8a6fb696747ba5/30b5f4d45_Chooseawarpicon.png', caption: 'Icon setzen — klicke ein Item aus deinem Inventar an (wird nicht verbraucht)' },
+        { type: 'image', src: 'https://media.base44.com/images/public/6a4bffc12d8a6fb696747ba5/6adec2321_Choosetheparticlecolorofyourwarppoint.png', caption: 'Warp-Farbe — wähle aus 10 Partikel-Farben' },
       ],
     },
     {

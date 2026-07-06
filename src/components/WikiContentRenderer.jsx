@@ -47,6 +47,15 @@ export default function WikiContentRenderer({ content }) {
                 </table>
               </div>
             );
+          case 'image':
+            return (
+              <figure key={i} className="my-4">
+                <img src={block.src} alt={block.caption || ''} className="w-full rounded-xl border border-white/10" />
+                {block.caption && (
+                  <figcaption className="text-center text-xs text-muted-foreground mt-2">{block.caption}</figcaption>
+                )}
+              </figure>
+            );
           default:
             return null;
         }
