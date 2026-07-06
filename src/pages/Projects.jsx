@@ -30,8 +30,8 @@ export default function Projects() {
             viewport={{ once: true }}
             className="glass-panel chromatic-border rounded-2xl overflow-hidden flex flex-col md:flex-row"
           >
-            <div className="md:w-64 h-48 md:h-auto flex-shrink-0">
-              <img src={p.banner} alt={p.title} className="w-full h-full object-cover" />
+            <div className="md:w-64 flex-shrink-0 bg-black/40 flex items-center justify-center">
+              <img src={p.banner} alt={p.title} className="w-full h-auto object-contain" />
             </div>
             <div className="p-6 flex-1 flex flex-col justify-center">
               <h2 className="text-2xl font-heading font-bold text-white mb-2">{p.title}</h2>
