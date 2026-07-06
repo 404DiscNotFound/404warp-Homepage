@@ -13,12 +13,12 @@ function sanitize(val, max = 1000) {
     .trim();
 }
 
-Deno.serve(async (req) => {
+Deno.serve(async (req, connInfo) => {
   try {
     const base44 = createClientFromRequest(req);
 
-    // Basic bot/misuse gate — no auth required, but rate-limited per IP
-    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    // Use real connection IP from Deno network info, not client-controlled headers
+    const ip = connInfo?.remoteAddr?.hostname || 'unknown';
     const now = Date.now();
     const hits = (inMemoryRateLimit.get(ip) || []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
     if (hits.length >= RATE_LIMIT_MAX) {
