@@ -66,14 +66,22 @@ export default function Contact() {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
+  // Strip HTML tags and limit length to prevent email content injection / phishing
+  const sanitize = (val, max = 1000) =>
+    String(val || '').replace(/<[^>]*>/g, '').replace(/[\r\n]+/g, ' ').slice(0, max).trim();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('sending');
     try {
+      const safeName = sanitize(form.name, 100);
+      const safeEmail = sanitize(form.email, 200);
+      const safeSubject = sanitize(form.subject, 200);
+      const safeMessage = String(form.message || '').replace(/<[^>]*>/g, '').slice(0, 5000).trim();
       await base44.integrations.Core.SendEmail({
         to: '404discnotfound@gmail.com',
-        subject: `[404Warp Contact] ${form.subject || 'No subject'}`,
-        body: `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
+        subject: `[404Warp Contact] ${safeSubject || 'No subject'}`,
+        body: `Name: ${safeName}\nEmail: ${safeEmail}\n\n${safeMessage}`,
       });
       setStatus('success');
       setForm({ name: '', email: '', subject: '', message: '' });
