@@ -3,11 +3,29 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
 const inMemoryRateLimit = new Map();
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_MAP_MAX = 10_000;
 
-// Strip HTML tags and control chars to prevent email content injection
+// Periodically purge expired entries to prevent unbounded memory growth
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, hits] of inMemoryRateLimit) {
+    const fresh = hits.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+    if (fresh.length === 0) {
+      inMemoryRateLimit.delete(key);
+    } else {
+      inMemoryRateLimit.set(key, fresh);
+    }
+  }
+}, RATE_LIMIT_WINDOW_MS);
+
+// Escape HTML special chars and strip control chars to prevent email content injection
 function sanitize(val, max = 1000) {
   return String(val || '')
-    .replace(/<[^>]*>/g, '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
     .replace(/[\r\n]+/g, ' ')
     .slice(0, max)
     .trim();
@@ -31,7 +49,7 @@ Deno.serve(async (req, connInfo) => {
     const name = sanitize(body.name, 100);
     const email = sanitize(body.email, 200);
     const subject = sanitize(body.subject, 200);
-    const message = String(body.message || '').replace(/<[^>]*>/g, '').slice(0, 5000).trim();
+    const message = sanitize(body.message, 5000);
 
     if (!name || !email || !subject || !message) {
       return Response.json({ error: 'Missing required fields' }, { status: 400 });
