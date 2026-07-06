@@ -1,0 +1,36 @@
+{
+  "name": "WarpPoint",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "A human-readable description of what this warp point leads to"
+    },
+    "warp_name": {
+      "type": "string",
+      "description": "The display name shown in the Warp Book GUI"
+    },
+    "location": {
+      "type": "string",
+      "description": "World and coordinates of the warp destination"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "player",
+        "shared",
+        "server"
+      ],
+      "default": "player",
+      "description": "Whether this is a personal, shared, or server warp"
+    },
+    "owner": {
+      "type": "string",
+      "description": "The Minecraft username of the player who created the warp"
+    }
+  },
+  "required": [
+    "description",
+    "warp_name"
+  ]
+}

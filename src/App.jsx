@@ -11,6 +11,8 @@ import Layout from '@/components/Layout';
 import Home from '@/pages/Home';
 import Wiki from '@/pages/Wiki';
 import Projects from '@/pages/Projects';
+import About from '@/pages/About';
+import Contact from '@/pages/Contact';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -42,6 +44,8 @@ const AuthenticatedApp = () => {
         <Route path="/" element={<Home />} />
         <Route path="/wiki" element={<Wiki />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
