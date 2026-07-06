@@ -13,6 +13,7 @@ import Wiki from '@/pages/Wiki';
 import Projects from '@/pages/Projects';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
+import FAQ from '@/pages/FAQ';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -46,6 +47,7 @@ const AuthenticatedApp = () => {
         <Route path="/projects" element={<Projects />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/faq" element={<FAQ />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

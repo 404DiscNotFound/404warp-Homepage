@@ -12,6 +12,8 @@ export default function Navbar() {
     { to: '/', label: t.nav.home },
     { to: '/wiki', label: t.nav.wiki },
     { to: '/projects', label: t.nav.projects },
+    { to: '/about', label: lang === 'de' ? 'Über uns' : 'About' },
+    { to: '/faq', label: 'FAQ' },
   ];
 
   return (
