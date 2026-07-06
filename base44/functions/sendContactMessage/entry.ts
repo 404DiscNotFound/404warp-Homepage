@@ -35,6 +35,13 @@ Deno.serve(async (req, connInfo) => {
   try {
     const base44 = createClientFromRequest(req);
 
+    // Validate origin to prevent cross-site abuse
+    const origin = req.headers.get('origin') || '';
+    const allowedOrigins = ['https://warp.404gnf.de', 'http://localhost:3000', 'http://localhost:5173'];
+    if (origin && !allowedOrigins.includes(origin)) {
+      return Response.json({ error: 'Invalid origin' }, { status: 403 });
+    }
+
     // Use real connection IP from Deno network info, not client-controlled headers
     const ip = connInfo?.remoteAddr?.hostname || 'unknown';
     const now = Date.now();
@@ -46,6 +53,20 @@ Deno.serve(async (req, connInfo) => {
     inMemoryRateLimit.set(ip, hits);
 
     const body = await req.json().catch(() => ({}));
+
+    // Honeypot: bots fill hidden fields — reject silently
+    if (body.website) {
+      return Response.json({ success: true });
+    }
+
+    // Timing check: reject submissions faster than 2 seconds (bots fill forms instantly)
+    if (body._ts) {
+      const elapsed = now - Number(body._ts);
+      if (elapsed < 2000) {
+        return Response.json({ error: 'Submission too fast' }, { status: 400 });
+      }
+    }
+
     const name = sanitize(body.name, 100);
     const email = sanitize(body.email, 200);
     const subject = sanitize(body.subject, 200);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Send, Mail, MessageCircle, Loader2, CheckCircle2 } from 'lucide-react';
@@ -61,8 +61,9 @@ const CONTENT = {
 export default function Contact() {
   const { lang } = useLanguage();
   const c = CONTENT[lang] || CONTENT.en;
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '', website: '' });
   const [status, setStatus] = useState('idle');
+  const formLoadTime = useRef(Date.now());
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -75,6 +76,8 @@ export default function Contact() {
         email: form.email,
         subject: form.subject,
         message: form.message,
+        website: form.website,
+        _ts: formLoadTime.current,
       });
       setStatus('success');
       setForm({ name: '', email: '', subject: '', message: '' });
@@ -131,6 +134,18 @@ export default function Contact() {
             <label className="block text-xs text-muted-foreground mb-1.5">{c.form.message}</label>
             <textarea name="message" value={form.message} onChange={handleChange} required rows={5} placeholder={c.form.messagePlaceholder} className={inputCls} />
           </div>
+
+          {/* Honeypot — hidden from real users, bots fill it */}
+          <input
+            type="text"
+            name="website"
+            value={form.website}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
+            className="absolute opacity-0 pointer-events-none -left-[9999px]"
+            aria-hidden="true"
+          />
 
           {status === 'success' && (
             <div className="flex items-center gap-2 text-sm text-green-400">
