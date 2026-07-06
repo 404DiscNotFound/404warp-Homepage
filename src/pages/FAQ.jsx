@@ -32,7 +32,7 @@ const FAQS = {
       },
       {
         q: 'Which Minecraft versions does 404Warp support?',
-        a: '404Warp is built for Spigot and Paper servers running Minecraft 1.26.1. The plugin is currently in open beta, with active development and feature updates based on community feedback from server owners and players.',
+        a: '404Warp is built for Spigot and Paper servers running Minecraft 26.1 and above. The plugin is currently in open beta, with active development and feature updates based on community feedback from server owners and players.',
       },
       {
         q: 'Is 404Warp available in multiple languages?',
@@ -79,7 +79,7 @@ const FAQS = {
       },
       {
         q: 'Welche Minecraft-Versionen unterstützt 404Warp?',
-        a: '404Warp ist für Spigot- und Paper-Server mit Minecraft 1.26.1 entwickelt. Das Plugin befindet sich derzeit in offener Beta, mit aktiver Entwicklung und Feature-Updates basierend auf Community-Feedback von Server-Besitzern und Spielern.',
+        a: '404Warp ist für Spigot- und Paper-Server ab Minecraft 26.1 entwickelt. Das Plugin befindet sich derzeit in offener Beta, mit aktiver Entwicklung und Feature-Updates basierend auf Community-Feedback von Server-Besitzern und Spielern.',
       },
       {
         q: 'Ist 404Warp in mehreren Sprachen verfügbar?',
